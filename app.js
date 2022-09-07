@@ -43,7 +43,12 @@ class app {
         document.querySelector("#product-list").innerHTML = productLists
     }
 
-
+    initEventListener(){
+        const uploadBtnClicked = () =>{
+            location.href = "./upload.html"
+        }
+        document.querySelector("#upload-btn").addEventListener("click", uploadBtnClicked)
+    }
 
 }
 new app()
