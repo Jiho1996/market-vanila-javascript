@@ -30,12 +30,15 @@ class app {
     
             return `${Math.floor(betweenTimeDay / 365)}년전`;
      }
+        
         const url = 'http://localhost:8080/products'
         const getProducts = await axios.get(url);
+        //console.log(getProducts.data.products)
         const productLists = getProducts.data.products.map((item) => {
+            // 서버에서 static파일 지정 덕에 소스주소를 아래와 같이해도 이미지 렌더링 가능.
             return `
         <div class = "product-card">
-        <img class = "product-img" src="${item.imageUrl}"/>
+        <img class = "product-img" src="http://localhost:8080/${item.imageUrl}"/>
             <div class = "product-content">
                 <span class="product-name">${item.name}</span>
                     <span class="product-price">${item.price}</span>
