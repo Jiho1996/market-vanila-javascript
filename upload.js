@@ -31,6 +31,7 @@ class upload{
 
         fetch(strURL, init)
         .then((result) => {
+            location.href = "./"
             console.log(result)
         })
     }
@@ -40,8 +41,8 @@ class upload{
     async render (){
         document.querySelector("#pic-submit-button").addEventListener("click", this.setImage)
         console.log(URL.ImageUrl.imageUrl)
-        document.querySelector("#submit-button").addEventListener("click", this.onSubmit)
         this.getImage();
+        document.querySelector("#submit-button").addEventListener("click", this.onSubmit)
     }
 
     getImage(){
