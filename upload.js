@@ -1,17 +1,45 @@
+import { URL } from "./constants.js"
+
 class upload{
     constructor(){
         
         this.render()
+
+
         
     }
 
+    onSubmit (){
+
+        let strURL = 'http://localhost:8080/products'
+
+        const init = {
+            method : "POST",
+            body : JSON.stringify({
+                name : document.getElementById("upload-name").value,
+                description : document.getElementById("product-description").value,
+                seller : "someone",
+                price : parseInt(document.getElementById("upload-price").value),
+                imageUrl : URL.ImageUrl.imageUrl
+        
+            }),
+            headers:{
+                'Content-Type' : 'application/json'
+            }
+            
+        }
+
+        fetch(strURL, init)
+        .then((result) => {
+            console.log(result)
+        })
+    }
+    
 
 
-
-    render (){
-        const imageUrl = ''
+    async render (){
         document.querySelector("#pic-submit-button").addEventListener("click", this.setImage)
-        console.log(imageUrl)
+        console.log(URL.ImageUrl.imageUrl)
         document.querySelector("#submit-button").addEventListener("click", this.onSubmit)
         this.getImage();
     }
@@ -66,7 +94,7 @@ class upload{
                 .then(async (res) => {
                     if (res.status == 200) {
                         console.log("success")
-                        await res.json()
+                        URL.ImageUrl = await res.json()
                         
                     } else {
                         console.error(`HTTP ERROR! status${res.status}`)
