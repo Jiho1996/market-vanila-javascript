@@ -45,6 +45,19 @@
   position: relative;
   
 }
+
+@media screen and (max-width : 400px){
+  .product-card{
+    width: 160px !important;
+  }
+  #header {
+    padding: 0 8px;
+  }
+  #body {
+    padding: 0 8px;
+  }
+  
+}
 .product-blur{
   position : absolute;
   left : 0;
