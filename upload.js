@@ -11,7 +11,7 @@ class upload{
 
     onSubmit (){
 
-        let strURL = 'http://localhost:8080/products'
+        let strURL = 'https://jiho-market-app.herokuapp.com/products'
 
         const init = {
             method : "POST",
@@ -70,7 +70,7 @@ class upload{
     
     setImage(){
         
-            let strURL = 'http://localhost:8080/image'
+            let strURL = 'https://jiho-market-app.herokuapp.com/image'
             
             let form_data = new FormData()
 

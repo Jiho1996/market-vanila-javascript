@@ -47,7 +47,7 @@ class app {
             return `
         <div class = "product-card" id ="product-card-${item.name}">
         ${item.soldout === 1 ? `<div class ="product-blur">` : `<div>`}
-        <img class = "product-img" src="http://localhost:8080/${item.imageUrl}"/>
+        <img class = "product-img" src="https://jiho-market-app.herokuapp.com/${item.imageUrl}"/>
             <div class = "product-content">
                 <span class="product-name">${item.name}</span>
                     <span class="product-price">${item.price}</span>
@@ -63,8 +63,7 @@ class app {
                                 
                                 </div>
             `
-            
-            
+ 
         });
         // const createElement = (tagName, tagContent) =>{
         //     let temp = document.createElement('div');
