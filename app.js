@@ -31,7 +31,7 @@ class app {
             return `${Math.floor(betweenTimeDay / 365)}년전`;
      }
         
-        const url = 'http://localhost:8080/products'
+        const url = 'https://jiho-market-app.herokuapp.com/products'
         const getProducts = await axios.get(url);
         //console.log(getProducts.data.products)
         const productLists = getProducts.data.products.map((item) => {
