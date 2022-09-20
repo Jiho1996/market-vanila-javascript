@@ -19,14 +19,14 @@ class app {
         ]
 
         const pageMatches = routes.map((route) => {
-            console.log(location.pathname, route.path)
+            console.log(location.pathname ,route.path, location.pathname ===route.path)
             return {
                 route, // route: route
                 isMatch: route.path === location.pathname,
             };
         });
         let match = pageMatches.find((pageMatch) => pageMatch.isMatch);
-
+       
         if (!match) {
             match = {
                 route: location.pathname,
@@ -35,7 +35,8 @@ class app {
             const page = new NotFound();
             document.querySelector("#app").innerHTML = await page.getHtml();
         } else {
-            new uploads();
+            new match.route.view();
+            
         }
     }
     setState (){
