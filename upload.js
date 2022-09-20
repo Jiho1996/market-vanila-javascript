@@ -1,17 +1,56 @@
 import { URL } from "./constants.js"
+import { $ } from "./utils/dom.js"
 
-class upload{
+
+export default class uploads{
     constructor(){
         
         this.render()
+    }
 
+    async getHtml(){
+        return `
 
+    <link href="./upload.css" type="text/css" rel="stylesheet" />
+
+    
+    <div id="upload-container">
+        <img id="preview-image">
+
+        <input id="upload-img-placeholder" type="file" accept ="image/*"/>
+        <input id = "pic-submit-button" type="submit">
+
+        <label for="index_image">이 곳에서 이미지 파일을 선택하세요.</label>
+    </div>
+                <div class="upload-label">
+                <Input id="upload-name" size="large" placeholder="상품 이름"></Input>
+                </div>
+                </form>
+             
+                <form>
+                <div class="upload-label">
         
+                    <Input id="upload-price" placeholder="상품 가격"></Input>
+                </div>
+                </form>
+          
+                <form>
+                
+                <input id="product-description" placeholder="상품 소개를 적어주세요."></input>
+              
+                </form>
+                
+                    <input id ="submit-button" size="large" type="submit">
+                </input>
+                
+            </form>
+        </div>
+
+        `
     }
 
     onSubmit (){
-
-        let strURL = 'https://jiho-market-app.herokuapp.com/products'
+        let strURL = 'http://127.0.0.1:8080/products'
 
         const init = {
             method : "POST",
@@ -32,22 +71,28 @@ class upload{
         fetch(strURL, init)
         .then((result) => {
             location.href = "./"
-            console.log(result)
+            
         })
     }
     
 
 
     async render (){
-        document.querySelector("#pic-submit-button").addEventListener("click", this.setImage)
-        console.log(URL.ImageUrl.imageUrl)
-        this.getImage();
-        document.querySelector("#submit-button").addEventListener("click", this.onSubmit)
+        
+        $('#app').innerHTML = await this.getHtml()
+        this.initEventListener();
     }
-
+    initEventListener () {
+        console.log($("#pic-submit-button"))
+        $("#pic-submit-button").addEventListener("click", this.setImage)
+        this.getImage();
+        $("#submit-button").addEventListener("click", this.onSubmit)
+    }
     getImage(){
         const inputImage = document.getElementById("upload-img-placeholder")
             inputImage.addEventListener("change", (e) => {
+                console.log(e.target.value);
+                console.log("go!")
                 // console.log(document.getElementById("upload-name").value)
                 // console.log(document.getElementById("upload-price").value)
                 // console.log(document.getElementById("product-description").value)
@@ -69,11 +114,12 @@ class upload{
     }
     
     setImage(){
-        
-            let strURL = 'https://jiho-market-app.herokuapp.com/image'
+            console.log("//")
+            let strURL = 'http://127.0.0.1:8080/image'
+            //'https://jiho-market-app.herokuapp.com
             
             let form_data = new FormData()
-
+            console.log(document.querySelector("#upload-img-placeholder").files)
             form_data.append("image", document.querySelector("#upload-img-placeholder").files[0])
         
 
@@ -109,6 +155,3 @@ class upload{
     }
     }
 
-
-
-new upload();

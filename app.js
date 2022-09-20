@@ -1,20 +1,48 @@
-import View from "./view/View.js";
 
+import View from "./view/View.js";
+import uploads from "./upload.js";
+import NotFound from "./view/NotFound.js";
 
 class app {
+    
     constructor(){
+        
         this.setState();
-        this.initEventListener();
+        
     }
-
-    router = () => {
+    
+    router = async () => {
+        
         const routes = [
-            {path : "/", view: Home},
-            {path : "/uploads", view : Uploads},
+            {path : "/", view: View},
+            {path : "/uploads", view : uploads},
         ]
+
+        const pageMatches = routes.map((route) => {
+            console.log(location.pathname, route.path)
+            return {
+                route, // route: route
+                isMatch: route.path === location.pathname,
+            };
+        });
+        let match = pageMatches.find((pageMatch) => pageMatch.isMatch);
+
+        if (!match) {
+            match = {
+                route: location.pathname,
+                isMatch: true,
+            };
+            const page = new NotFound();
+            document.querySelector("#app").innerHTML = await page.getHtml();
+        } else {
+            new uploads();
+        }
     }
     setState (){
+        
         new View();
+        this.initEventListener();
+        
 
     //     function timeForToday(value) {
     //         const today = new Date();
@@ -91,10 +119,16 @@ class app {
     }
 
     initEventListener(){
-        const uploadBtnClicked = () =>{
-            location.href = "./upload.html"
-        }
-        document.querySelector("#upload-btn").addEventListener("click", uploadBtnClicked)
+        window.addEventListener("popstate", () =>{
+            
+            this.router()
+        })
+    
+        document.querySelector("#upload-btn").addEventListener("click", (e) => {
+            e.preventDefault();
+            history.pushState(null, null, e.target.href)
+            this.router()
+        })
     }
 
 }
