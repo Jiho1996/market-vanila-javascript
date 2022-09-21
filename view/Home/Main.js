@@ -28,6 +28,7 @@ export default class Main extends Core {
     
             return `${Math.floor(betweenTimeDay / 365)}년전`;
      }
+     
 
         return this.props.data.products.map((item) => 
         `<div class = "product-card" id ="product-card-${item.name}">
@@ -48,6 +49,6 @@ export default class Main extends Core {
                                 
                                 </div>
             `
-    )
+    ).join("")
     }
 }
