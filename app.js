@@ -12,18 +12,14 @@ class app {
     }
 
     render = async () => {
-
-        const getProducts = await axios.get('http://127.0.0.1:8080/products');
         
-        this.router();
+        await this.router();
         this.initEventListener();
-        new Main($('#product-list'), getProducts);
         
     }
 
  
-    router = () => {
-        //const getProducts = axios.get('http://127.0.0.1:8080/products');
+    router = async () => {
 
         const routes = [
             {path : "/", view: View},
@@ -49,15 +45,22 @@ class app {
             document.querySelector("#app").innerHTML = page.getHtml();
         }
 
-        else{
+        
+            
+            const getProducts = await axios.get('http://127.0.0.1:8080/products');
+            
             new match.route.view;
-        }
+
+            if (location.pathname === '/') { 
+                new Main($('#product-list'), getProducts); 
+            }
+            
+        
     }
 
     initEventListener = () =>{
 
         document.addEventListener("DOMContentLoaded", () => {
-            
             this.router();
         });
 
@@ -65,7 +68,6 @@ class app {
         
         document.querySelector("#upload-btn").addEventListener("click", (e) => {
             e.preventDefault();
-            
             history.pushState(null, null, e.target.href)
             this.router()
             
