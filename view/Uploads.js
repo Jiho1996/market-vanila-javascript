@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>업로드</title>
+import Core from "./Core/Core.js"
+
+export default class Uploads extends Core{
+    template (){
+        return `
+
     <link href="./upload.css" type="text/css" rel="stylesheet" />
-</head>
-<body>
+
     
     <div id="upload-container">
         <img id="preview-image">
-    <!-- <form method="post" action = "http://localhost:8080/image" enctype="multipart/form-data"> -->
+
         <input id="upload-img-placeholder" type="file" accept ="image/*"/>
         <input id = "pic-submit-button" type="submit">
-    <!-- </form> -->
-        <label for=”index_image”>이 곳에서 이미지 파일을 선택하세요.</label>
+
+        <label for="index_image">이 곳에서 이미지 파일을 선택하세요.</label>
     </div>
                 <div class="upload-label">
                 <Input id="upload-name" size="large" placeholder="상품 이름"></Input>
@@ -39,7 +38,7 @@
                 
             </form>
         </div>
- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-    <script type ="module" defer src="./upload.js"></script>
-</body>
-</html>
+
+        `
+    }
+}
