@@ -44,15 +44,11 @@ class app {
             const page = new NotFound();
             document.querySelector("#app").innerHTML = page.getHtml();
         }
-
-        
-            
-            const getProducts = await axios.get('http://127.0.0.1:8080/products');
             
             new match.route.view;
 
             if (location.pathname === '/') { 
-                new Main($('#product-list'), getProducts); 
+                new Main($('#product-list'), await axios.get('http://127.0.0.1:8080/products')); 
             }
             
         
