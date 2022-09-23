@@ -15,11 +15,11 @@
   
   
   height: 40px;
-  width: 30%;
+  width: 28%;
   
 }
 
-#input-search {
+.form-search {
   max-height: 16rem;
   width: 100%;
   border: 1px solid #bbb;

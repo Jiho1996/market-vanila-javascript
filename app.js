@@ -4,6 +4,7 @@ import uploads from "./upload.js";
 import Main from "./view/Home/Main.js";
 import NotFound from "./view/NotFound.js";
 import { $ } from "./utils/dom.js";
+import Search from "./search.js";
 
 class app {
     
@@ -20,10 +21,11 @@ class app {
 
  
     router = async () => {
-
+        
         const routes = [
             {path : "/", view: View},
             {path : "/uploads", view : uploads},
+            {path : "/search", view : Search},
         ]
 
         const pageMatches = routes.map((route) => {
@@ -48,19 +50,36 @@ class app {
             new match.route.view;
 
             if (location.pathname === '/') { 
-                new Main($('#product-list'), await axios.get('http://127.0.0.1:8080/products')); 
+                const getProducts = await axios.get('http://127.0.0.1:8080/products')
+                new Main($('#product-list'), getProducts); 
             }
             
         
     }
 
     initEventListener = () =>{
-
+        
         document.addEventListener("DOMContentLoaded", () => {
             this.router();
         });
 
+        document.querySelector("#input-search").addEventListener("click", () => {
+            new Search(null, $("#app"));
+            
+        })
         window.addEventListener("popstate", this.router)
+
+        document.querySelector("#input-search").addEventListener("keypress", async (e) => {
+            if (e.key !== "Enter"){
+                return;
+            }
+            e.preventDefault();
+            let value = e.target.value
+            const getProducts = await axios.get('http://127.0.0.1:8080/products')
+            new Search(getProducts, value); 
+            
+            
+        })
         
         document.querySelector("#upload-btn").addEventListener("click", (e) => {
             e.preventDefault();
