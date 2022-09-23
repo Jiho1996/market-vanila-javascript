@@ -1,37 +1,74 @@
 #banner {
-
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+  
 }
 
 #banner > img {
-  width: 100%;
+  width: 80%;
+
   max-height: 300px;
 }
 
+.search {
+  
+  
+  height: 40px;
+  width: 28%;
+  
+}
+
+.form-search {
+  max-height: 16rem;
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
 
 #app > h1 {
   margin-top: 16px;
 }
+
+
 #header-area{
-  
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+  height: 6rem;
+  width: 100%;
 }
 
-#header-area > button {
+#logo {
+  max-width: 16rem;
+  min-width: 10rem;
+  float: left;
+}
+
+#upload-btn {
+  
+  
   cursor: pointer;
-  margin-right: 10px;
+  text-decoration: none;
   height: 3rem;
   width: 8rem;
-  background-color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #bbb;
+  border-radius: 10%;
   border-color: rgb(241, 241, 241);
   
 }
 #product-list {
+  
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 8px;
+  justify-content: center;
+  
 }
 .product-card {
   cursor: pointer;
