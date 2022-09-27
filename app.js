@@ -21,7 +21,9 @@ class app {
 
  
     router = async () => {
-        
+        $("#app").innerHTML = '';
+
+        console.log(location.pathname)
         const routes = [
             {path : "/", view: View},
             {path : "/uploads", view : uploads},
@@ -44,7 +46,7 @@ class app {
                 isMatch: true,
             };
             const page = new NotFound();
-            document.querySelector("#app").innerHTML = page.getHtml();
+            $("#app").innerHTML = page.getHtml();
         }
             
             new match.route.view;
@@ -63,13 +65,18 @@ class app {
             this.router();
         });
 
-        document.querySelector("#input-search").addEventListener("click", () => {
+        $("#input-search").addEventListener("click", () => {
             new Search(null, $("#app"));
             
         })
+        $("#logo").addEventListener("click", (e)=>{
+            location.href = './'
+            
+        })
+
         window.addEventListener("popstate", this.router)
 
-        document.querySelector("#input-search").addEventListener("keypress", async (e) => {
+        $("#input-search").addEventListener("keypress", async (e) => {
             if (e.key !== "Enter"){
                 return;
             }
@@ -81,7 +88,7 @@ class app {
             
         })
         
-        document.querySelector("#upload-btn").addEventListener("click", (e) => {
+        $("#upload-btn").addEventListener("click", (e) => {
             e.preventDefault();
             history.pushState(null, null, e.target.href)
             this.router()
