@@ -28,11 +28,6 @@
   font-size: 14px;
 }
 
-#app > h1 {
-  margin-top: 16px;
-}
-
-
 #header-area{
   display: flex;
   justify-content: space-evenly;
@@ -45,6 +40,8 @@
   max-width: 16rem;
   min-width: 10rem;
   float: left;
+  cursor: pointer;
+  
 }
 
 #upload-btn {

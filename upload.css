@@ -10,6 +10,15 @@
     margin-left: 16px;
 }
 
+@media screen and (max-width : 400px){
+    #header {
+      padding: 0 8px;
+    }
+    #app {
+      padding: 0 8px;
+    }
+    
+  }
 #upload-container{
     padding-top:20px
 }
@@ -51,3 +60,34 @@
     margin-top: 10px;
 }
 
+
+.search {
+  
+  
+    height: 40px;
+    width: 28%;
+    
+  }
+  
+  .form-search {
+    max-height: 16rem;
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  #header-area{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 6rem;
+    width: 100%;
+  }
+  
+  #logo {
+    max-width: 16rem;
+    min-width: 10rem;
+    float: left;
+  }
