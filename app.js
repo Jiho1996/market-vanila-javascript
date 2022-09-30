@@ -6,6 +6,8 @@ import { $ } from "./utils/dom.js";
 import Search from "./view/Home/Search.js";
 import uploadModel from "./Model/uploadModel.js";
 import Uploads from "./view/Upload/Uploads.js";
+import { productDetailModel } from "./Model/productDetailModel.js";
+import productDetail from "./view/productDetail.js";
 
 class app {
     constructor(){
@@ -55,6 +57,11 @@ class app {
                 new Main($('#product-list'), getProducts); 
                 this.initEventListener();
             }
+
+            if (location.pathname === '/search'){
+                new Search(null);
+            }
+            
             
             //else { new match.route.view; }
             // if (location.pathname === '/uploads'){
@@ -65,17 +72,26 @@ class app {
 
     initEventListener = () =>{
         
-        document.addEventListener("DOMContentLoaded", () => {
-            this.router();
+        // document.addEventListener("DOMContentLoaded", () => {
+        //     this.router();
             
-        });
+        // });
+
+        $("#product-list").addEventListener("click", async (e) => {
+            history.pushState(null, null, `./products/${e.target.id}`)
+            const getProductDetail = await productDetailModel(e.target.id);
+            new productDetail($('#app'), getProductDetail);
+        } )
 
         $("#input-search").addEventListener("click", () => {
-            new Search(null);
+            history.pushState(null, null, '/search');
+            this.router();
+            
             
         })
         $("#logo").addEventListener("click", ()=>{
-            location.href = './'
+            history.pushState(null, null, '../');
+            this.router();
             
         })
 
@@ -108,7 +124,6 @@ class app {
         
         await this.router();
         
-
     }
     
 }
