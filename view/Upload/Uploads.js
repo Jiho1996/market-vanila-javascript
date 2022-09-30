@@ -1,4 +1,4 @@
-import Core from "./Core/Core.js"
+import Core from "../Core/Core.js"
 
 export default class Uploads extends Core{
     template (){

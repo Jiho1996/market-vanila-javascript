@@ -1,10 +1,8 @@
-import { URL } from "./constants.js"
-import { $ } from "./utils/dom.js"
-import Uploads from "./view/uploads.js"
+import { URL } from "../constants.js"
+import { $ } from "../utils/dom.js"
+import Uploads from "../view/Upload/Uploads.js";
 
-
-
-export default class uploads{
+export default class{
     constructor(){
         this.render()
     }
@@ -25,21 +23,21 @@ export default class uploads{
             headers:{
                 'Content-Type' : 'application/json'
             }
-            
         }
 
         fetch(strURL, init)
-        .then((result) => {
-            location.href = "./"
-            
+        .then(() => {   
+            location.href = `./`
+        }
+        ).catch(()=>{
+            alert("error!")
         })
     }
     
 
 
     async render (){
-        
-        new Uploads($('#app'));
+        // new Uploads($('#app'));
         this.initEventListener();
     }
     initEventListener () {
@@ -48,6 +46,7 @@ export default class uploads{
         this.getImage();
         $("#submit-button").addEventListener("click", this.onSubmit)
     }
+
     getImage(){
         const inputImage = document.getElementById("upload-img-placeholder")
             inputImage.addEventListener("change", (e) => {
@@ -74,26 +73,18 @@ export default class uploads{
     }
     
     setImage(){
-            console.log("//")
+            
             let strURL = 'http://127.0.0.1:8080/image'
             //'https://jiho-market-app.herokuapp.com
             
             let form_data = new FormData()
-            console.log(document.querySelector("#upload-img-placeholder").files)
-            form_data.append("image", document.querySelector("#upload-img-placeholder").files[0])
         
-
+            form_data.append("image", document.querySelector("#upload-img-placeholder").files[0])
+    
             //form_data.append("")
 
-            // for (var pair of form_data.entries()) {
-            //     console.log(pair[0]+ ', ' + pair[1]); 
-            // }
             const init = {
                 method: 'POST',
-                // headers: {
-                //     // 'Content-Type': 'application/x-www-form-urlencoded',
-                //     // 'credentials': 'same-origin'
-                // },
                 body: form_data
             }
         
@@ -105,13 +96,12 @@ export default class uploads{
                         
                     } else {
                         console.error(`HTTP ERROR! status${res.status}`)
+                        alert(`${res.status}`)
                     }
                 })
                 .catch(err => {
                     console.log(err)
                 })
-        
-
     }
     }
 

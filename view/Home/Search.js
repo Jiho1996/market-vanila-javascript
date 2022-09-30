@@ -1,5 +1,5 @@
-import Core from "./view/Core/Core.js";
-import { $ } from "./utils/dom.js";
+
+import { $ } from "../../utils/dom.js";
 
 export default class Search{
     constructor(props, value){
@@ -58,7 +58,7 @@ export default class Search{
     }
     ).join("")
     }
-    else {return '';}
+        else {return '';}
     }
 
     render(){

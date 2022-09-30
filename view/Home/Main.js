@@ -1,5 +1,5 @@
 
-import { $ } from "../../utils/dom.js";
+
 import Core from "../Core/Core.js";
 
 export default class Main extends Core {
@@ -28,12 +28,11 @@ export default class Main extends Core {
     
             return `${Math.floor(betweenTimeDay / 365)}년전`;
      }
-     
 
         return this.props.data.products.map((item) => 
         `<div class = "product-card" id ="product-card-${item.name}">
         ${item.soldout === 1 ? `<div class ="product-blur">` : `<div>`}
-        <img class = "product-img" src="http://127.0.0.1:8080/${item.imageUrl}"/>
+        <img class = "product-img" id = "${item.id}"src="http://127.0.0.1:8080/${item.imageUrl}"/>
             <div class = "product-content">
                 <span class="product-name">${item.name}</span>
                     <span class="product-price">${item.price}</span>
