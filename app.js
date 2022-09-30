@@ -8,6 +8,7 @@ import uploadModel from "./Model/uploadModel.js";
 import Uploads from "./view/Upload/Uploads.js";
 import { productDetailModel } from "./Model/productDetailModel.js";
 import productDetail from "./view/productDetail.js";
+import {variables} from "./constants.js"
 
 class app {
     constructor(){
@@ -15,8 +16,9 @@ class app {
     }
  
     router = async () => {
-        $("#app").innerHTML = '';
         
+        $("#app").innerHTML = '';
+
         const routes = [
             {path : "/", view: View},
             {path : "/uploads", view : Uploads},
@@ -53,7 +55,8 @@ class app {
             if (location.pathname === '/') { 
                 
                 const getProducts = await axios.get('http://127.0.0.1:8080/products')
-                new View();
+                if (variables.initialApproach){new View();variables.initialApproach = false;}
+                this.makeProductsFrame();
                 new Main($('#product-list'), getProducts); 
                 this.initEventListener();
             }
@@ -62,14 +65,13 @@ class app {
                 new Search(null);
             }
             
-            
-            //else { new match.route.view; }
-            // if (location.pathname === '/uploads'){
-            //     new uploadModel();
-            // }
-        
-    }
 
+    }
+    makeProductsFrame = () => {
+        let productList = document.createElement('div');
+        productList.id = 'product-list'
+        $('#app').appendChild(productList)
+    }
     initEventListener = () =>{
         
         // document.addEventListener("DOMContentLoaded", () => {
@@ -90,7 +92,7 @@ class app {
             
         })
         $("#logo").addEventListener("click", ()=>{
-            history.pushState(null, null, '../');
+            history.pushState(null, null, '/');
             this.router();
             
         })
